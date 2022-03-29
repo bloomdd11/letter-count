@@ -1,0 +1,81 @@
+/* all unset  */
+
+body,
+h1,
+p,
+section,
+div {
+    all: unset;
+}
+
+
+/* positioning main-box */
+
+body {
+    height: 100vh;
+    /* for align-items center */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: whitex;
+}
+
+
+/* positioning content of main-box */
+
+.main-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ddd;
+    padding: 3rem;
+}
+
+
+/* positioning box-heading */
+
+.main-box .box-heading {
+    font-size: 3rem;
+    padding: 0.5rem;
+    line-height: 4rem;
+    background-color: white;
+    margin-bottom: 0.5rem;
+}
+
+
+/* positioning box-body */
+
+.main-box .box-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    line-height: 3rem;
+    background-color: white;
+    padding: 1rem;
+}
+
+
+/* positioning one-letter */
+
+.main-box .box-body .one-letter {
+    font-size: 1.5rem;
+    background-color: #ddd;
+    padding: 0.5rem;
+    margin: 0 0.1rem;
+    text-align: center;
+}
+
+.main-box .box-body .one-letter:hover {
+    cursor: pointer;
+}
+
+input[name='one-letter-input'] {
+    text-decoration: none;
+    border: none;
+    width: 1rem;
+    height: 100%;
+    background-color: #ddd;
+    font-size: 1.5rem;
+    text-align: center;
+}
