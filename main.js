@@ -1,80 +1,45 @@
-// variables
-let oneLetter = document.querySelectorAll('.one-letter');
+// virables
+let userinput = document.querySelector('.inputfield input[name="userinput"]');
+let submit = document.querySelector('.inputfield .submit');
 let boxBody = document.querySelector('.box-body');
+let store = [];
 
-// utilites
-let loopWatch = false;
-
-
-// methods
-function remove() { boxBody.textContent = ''; } // remove contents in the boxbody before adding news
-
-function addElement(parent, child) {
-    parent.appendChild(child);
-};
-
-function getInputValue() {
-    let oneLetterInput = document.querySelector('.one-letter input[name = "one-letter-input"]');
-    console.log(oneLetterInput.value);
+// method
+function remove() {
+    boxBody.textContent = '';
 }
 
-function createInput() {
-    let oneLetterInput = document.createElement('input');
-    oneLetterInput.setAttribute('name', 'one-letter-input');
+function letterStore() {
+    let store = [];
+    let len = userinput.value.length;
+    for (let i = 0; i < len; i++) {
+        store.push(userinput.value[i]);
+    }
 
-    return oneLetterInput;
-}
-
-function createDiv() {
-    let newDiv = document.createElement('div');
-    newDiv.setAttribute('class', 'one-letter');
-
-    addElement(newDiv, createInput());
-
-    return newDiv;
-}
-
-function createOneLetterUpdate(letter) {
-    let newDiv = document.createElement('div');
-    newDiv.setAttribute('class', 'one-letter');
-    newDiv.textContent = letter;
-
-    return newDiv;
-}
-
-function script() {
-    function decideKey(code) {
-        if (code == 13 && loopWatch) {
-            console.log('You have done');
-            remove();
-            clearInterval(loop);
-            loopWatch = false;
-        } else if (code != 13 && loopWatch) {
-            remove();
-            addElement(boxBody, createDiv());
-            getInputValue();
+    store.forEach(i => {
+        if (i == ' ') {
+            addDiv('-')
+        } else {
+            addDiv(i);
         }
-        if (loopWatch) {} else {}
-    };
-
-    let loop = setInterval(() => {
-        loopWatch = true;
-
-        let doc = document.querySelector('body');
-        doc.addEventListener('keydown', e => {
-            decideKey(e.keyCode);
-        })
-    }, 100);
+    })
+    return store;
 }
 
+function addDiv(userletter) {
+    let letter = document.createElement('div');
+    letter.setAttribute('class', 'one-letter');
+    letter.textContent = userletter;
 
+    boxBody.appendChild(letter);
+}
 
+function process() {
+    remove();
+    letterStore();
+}
 
-// events
-oneLetter.forEach(e => {
-    e.addEventListener('click', () => {
-        remove();
-        addElement(boxBody, createDiv());
-        script();
-    })
+// event
+submit.addEventListener('click', () => {
+    process();
 })
